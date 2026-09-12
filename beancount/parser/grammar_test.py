@@ -233,6 +233,15 @@ class TestParserEntryTypes(unittest.TestCase):
             txns[0].values,
         )
 
+    @parser.parse_doc()
+    def test_entry_custom_empty(self, entries, _, __):
+        """
+        2013-05-18 custom "empty"
+        """
+        check_list(self, entries, [data.Custom])
+        txns = [entry for entry in entries if isinstance(entry, data.Custom)]
+        self.assertEqual([], txns[0].values)
+
 
 class TestWhitespace(unittest.TestCase):
     """Tests for handling of whitespace and indent."""
