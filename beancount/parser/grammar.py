@@ -834,6 +834,8 @@ class Builder(lexer.LexBuilder):
           A new Custom object.
         """
         meta = new_metadata(filename, lineno, kvlist)
+        if custom_values is None:
+            custom_values = []
         return Custom(meta, date, dir_type, custom_values)
 
     def custom_value(self, filename, lineno, value, dtype=None):
